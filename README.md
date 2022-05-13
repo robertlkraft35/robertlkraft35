@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @robertlkraft35
 - 👀 I’m interested in python, AWS, and Azure
 - 🌱 I’m currently learning what is above.
-- 💞️ I’m looking to collaborate on nothing at this point, just beginnig to learn.
+- 💞️ I’m looking to collaborate on nothing at this point, just beginning to learn.
 - 📫 How to reach me robertlkraft35@gmail.com
 
 <!---
