@@ -1,0 +1,40 @@
+﻿#!/usr/bin/env python3
+
+from azure.mgmt.network import NetworkManagementClient
+from azure.identity import DefaultAzureCredential
+
+print ("Building a new subnet in VNET WEST_US_2_VNET_1")
+print("Please type the subnet name")
+SUBNET_NAME = input()
+print ("Please type the new subnet in the following format: x.x.x.x/x")
+
+NEW_SUBNET = input()
+RESOURCE_GROUP_NAME = 'Mastering-Python-Networking'
+VNET_NAME = 'WEST_US_2_VNET_1'
+LOCATION = 'eastus'
+#SUBNET_NAME = 'python_created_sub'
+credentials = DefaultAzureCredential()
+
+network_client = NetworkManagementClient(credentials, 'fd71f5a8-fb53-428b-94f7-7dcfd19c3b7b')
+
+# The following section readdresses the VNET, so the subnet added is created in a "new" 
+# CIDR, and the existing subnets are removed. Not intended behavior.
+
+#async_vnet_creation = network_client.virtual_networks.begin_create_or_update(
+#    RESOURCE_GROUP_NAME,
+#    VNET_NAME,
+#    {
+#        'location': LOCATION,
+#        'address_space': {
+#            'address_prefixes': ['192.168.0.0/16']
+#        }
+#    }
+#)
+
+async_subnet_creation = network_client.subnets.begin_create_or_update(
+    RESOURCE_GROUP_NAME,
+    VNET_NAME,
+    SUBNET_NAME,
+    {'address_prefix': NEW_SUBNET}
+)
+subnet_info = async_subnet_creation.result()
